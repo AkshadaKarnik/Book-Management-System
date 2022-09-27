@@ -1,0 +1,15 @@
+<div class="jumbotron">
+  <h1 class="display-4">
+    <h2> Hello <%= @user.name %>!!</h2>
+  </h1>
+  <p class="lead">
+    Your email: <%= @user.email %> <br>
+    Your contact: <%= @user.contact %> <br>
+    <% if @user.image.attached? %>
+      <%= image_tag @user.image, style: "width: 200px; display: block" %>
+    <% end %>
+    Your image: <%= @user.image %> <br>
+  </p>
+</div>
+<%= link_to 'edit', edit_user_path(@user), class:"btn btn-secondary" %>
+<%= link_to 'back to profile', user_profile_path, class:"btn btn-secondary" %>

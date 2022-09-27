@@ -1,0 +1,37 @@
+<h1>Book List :)</h1>
+<% if current_user.role == 'author' %>
+  <%= link_to 'Create Book', new_book_path, class:"btn btn-success" %>
+<% end %>
+<br/><br/>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Coverpage</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |bk| %>
+    <tr>
+      <td><%= bk.title%></td>
+      <td><%= bk.description %></td>
+      <td>
+        <% if bk.cover_image.attached? %>
+          <%= image_tag bk.cover_image, style: "width: 200px; display: block" %>
+        <% end %>
+        <%= bk.cover_image %>
+      </td>
+      <% if current_user.role == 'author' %>
+        <td><%= link_to 'show', book_path(bk), class:"btn btn-secondary" %></td>
+        <td><%= link_to 'edit', edit_book_path(bk), class:"btn btn-secondary" %></td>
+        <td><%= link_to 'delete', bk, data: {turbo_method: :delete,turbo_confirm: "Are you sure?" },  class:"btn btn-danger" %>
+        </td>
+      <% else %>
+        <td><%= link_to 'show', book_path(bk), class:"btn btn-secondary" %></td> 
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

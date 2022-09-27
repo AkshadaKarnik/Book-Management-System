@@ -1,0 +1,30 @@
+<h1>User Profile</h1>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Contact</th>
+      <th scope="col">Image</th>
+      <th scope="col">Your Role</th>
+      <th colspan="2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @current_userr.name %></td>
+      <td><%= @current_userr.email %></td>
+      <td><%= @current_userr.contact %></td>
+      <td>
+        <% if @current_userr.image.attached? %>
+      <%= image_tag @current_userr.image, style: "width: 200px; display: block" %>
+    <% end %>
+        <%= @current_userr.image %>  
+      </td>
+      <td><%= @current_userr.role %></td>
+     
+      <td><%= link_to 'show', user_path(@current_userr), class:"btn btn-secondary" %></td>
+      <td><%= link_to 'edit', edit_user_path(@current_userr), class:"btn btn-secondary" %></td>
+    </tr>
+  </tbody>
+</table>
